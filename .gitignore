@@ -6,3 +6,4 @@ docker/mysql
 .DS_Store
 
 node_modules
+.env
