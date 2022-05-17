@@ -26,9 +26,13 @@ class AttractionController extends AbstractController
     {
         $attraction = new Attraction();
         $form = $this->createForm(AttractionType::class, $attraction);
+        $form->remove("createdAt");
+        $form->remove("updatedAt");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $attraction->setCreatedAt(new \DateTimeImmutable());
+            $attraction->setUpdatedAt(new \DateTimeImmutable());
             $attractionRepository->add($attraction, true);
 
             return $this->redirectToRoute('app_attraction_index', [], Response::HTTP_SEE_OTHER);
@@ -52,9 +56,12 @@ class AttractionController extends AbstractController
     public function edit(Request $request, Attraction $attraction, AttractionRepository $attractionRepository): Response
     {
         $form = $this->createForm(AttractionType::class, $attraction);
+        $form->remove("createdAt");
+        $form->remove("updatedAt");
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $attraction->setUpdatedAt(new \DateTimeImmutable());
             $attractionRepository->add($attraction, true);
 
             return $this->redirectToRoute('app_attraction_index', [], Response::HTTP_SEE_OTHER);
