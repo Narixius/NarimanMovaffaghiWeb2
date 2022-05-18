@@ -1,14 +1,17 @@
 
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Attraction index{% endblock %}
 
 {% block body %}
-
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-
+<div class="card bg-transparent mx-auto border-0" style="max-width: 400px;" >
+    <h3>Send us a message</h3>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary mt-2">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>
 {% endblock body%}
 

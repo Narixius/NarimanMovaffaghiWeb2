@@ -3,15 +3,16 @@
 {% block title %}Message index{% endblock %}
 
 {% block body %}
-    <h1>Message index</h1>
+    <h1 >Message index</h1>
 
-    <table class="table">
+    <table class="table table-striped table-dark rounded-2 my-4" >
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Description</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_contact_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_contact_new') }}">Create new</a>
 {% endblock %}

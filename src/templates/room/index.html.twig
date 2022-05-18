@@ -13,27 +13,27 @@
 {% block body %}
     <h1>Room index</h1>
 
-    <table class="table">
+    <table class="table table-striped table-dark rounded-2 my-4" >
         <thead>
             <tr>
                 <th>Id</th>
-                <th>hotel</th>
                 <th>BedCount</th>
                 <th>IsEmpty</th>
-                <th>actions</th>
+                <th>Hotel</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for room in rooms %}
             <tr>
                 <td>{{ room.id }}</td>
-                <td>{{ room.hotel }}</td>
                 <td>{{ room.bedCount }}</td>
                 <td>{{ room.isEmpty ? 'Yes' : 'No' }}</td>
+                <td>{{ room.hotel }}</td>
                 <td>
-                    <a href="{{ path('app_room_show', {'id': room.id}) }}">show</a>
-                    <a href="{{ path('app_room_edit', {'id': room.id}) }}">edit</a>
-                    <a href="{{ path('app_hotel_show', {'id': room.hotel.id}) }}">go to hotel</a>
+                    <a class="btn-sm btn btn-warning" href="{{ path('app_room_show', {'id': room.id}) }}">Show</a>
+                    <a class="btn-sm btn btn-info" href="{{ path('app_room_edit', {'id': room.id}) }}">Edit</a>
+                    <a class="btn-sm btn btn-primary" href="{{ path('app_hotel_show', {'id': room.hotel.id}) }}">Go to hotel</a>
                 </td>
             </tr>
         {% else %}
@@ -44,5 +44,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_room_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_room_new') }}">Create new</a>
 {% endblock %}
