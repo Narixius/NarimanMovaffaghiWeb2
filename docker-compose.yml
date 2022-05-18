@@ -26,3 +26,12 @@ services:
     volumes:
       - ./docker/mysql:/var/lib/mysql:delegated
     restart: always
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
