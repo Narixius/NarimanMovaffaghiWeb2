@@ -5,6 +5,7 @@ services:
       .env
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
       - ./src:/var/www/html
       - ./src/var:/var/www/html/var:delegated
@@ -31,7 +32,7 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - 8080:80
+      - 8000:80
     environment:
       - PMA_HOST=mysql
       - PMA_PORT=3306

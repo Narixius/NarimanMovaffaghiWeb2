@@ -9,7 +9,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 # install git
-RUN apt-get -y update && apt-get -y install git
+RUN apt-get -y update && apt-get -y install git nodejs npm
 
 # install mysql driver
 RUN docker-php-ext-install pdo_mysql
@@ -24,3 +24,5 @@ COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN npm install

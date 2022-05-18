@@ -6,6 +6,7 @@ use App\Repository\HotelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: HotelRepository::class)]
 class Hotel
@@ -21,7 +22,11 @@ class Hotel
     #[ORM\Column(type: 'integer')]
     private $stars;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'float', nullable: true)]
+    #[Assert\Range(
+        min: 0,
+        max: 5,
+    )]
     private $score;
 
     #[ORM\OneToMany(mappedBy: 'hotel', targetEntity: Room::class)]
@@ -61,12 +66,12 @@ class Hotel
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore(): ?float
     {
         return $this->score;
     }
 
-    public function setScore(?int $score): self
+    public function setScore(?float $score): self
     {
         $this->score = $score;
 
