@@ -7,32 +7,35 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AttractionRepository::class)]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
+#[ORM\DiscriminatorMap(["Attraction", "Event", "Location"])]
 class Attraction
 {
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    protected $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $name;
+    protected $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $shortDescription;
+    protected $shortDescription;
 
     #[ORM\Column(type: 'text')]
-    private $longDescription;
+    protected $longDescription;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\Range(
         min: 1,
         max: 10,
     )]
-    private $score;
+    protected $score;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @return mixed

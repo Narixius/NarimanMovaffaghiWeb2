@@ -27,3 +27,35 @@ services:
         arguments: [ "@knp_menu.factory" ]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main } # The alias is what is used to retrieve the menu
+
+    App\Listener\TimeLogListener:
+        tags:
+            -
+                name: 'doctrine.event_listener'
+                event: 'prePersist'
+                priority: 500
+                connection: 'default'
+            -
+                name: 'doctrine.event_listener'
+                event: 'preUpdate'
+                priority: 500
+                connection: 'default'
+
+    App\Listener\UserLogListener:
+        tags:
+            -
+              name: 'doctrine.event_listener'
+              event: 'prePersist'
+              priority: 500
+              connection: 'default'
+            - name: 'doctrine.event_listener'
+              event: 'preUpdate'
+              priority: 500
+              connection: 'default'
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]
