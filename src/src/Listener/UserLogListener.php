@@ -17,18 +17,23 @@ class UserLogListener
 
     public function prePersist(LifecycleEventArgs $args){
         $entity = $args->getObject();
-        $user = $this->tokenStorage->getToken()->getUser();
-        if($entity instanceof Hotel){
-            $entity->setCreatedBy($user);
-            $entity->setUpdatedBy($user);
+        if($this->tokenStorage->getToken()){
+            $user = $this->tokenStorage->getToken()->getUser();
+            if($entity instanceof Hotel){
+                $entity->setCreatedBy($user);
+                $entity->setUpdatedBy($user);
+            }
         }
+
     }
 
     public function preUpdate(LifecycleEventArgs $args){
         $entity = $args->getObject();
-        $user = $this->tokenStorage->getToken()->getUser();
-        if($entity instanceof Hotel){
-            $entity->setUpdatedBy($user);
+        if($this->tokenStorage->getToken()) {
+            $user = $this->tokenStorage->getToken()->getUser();
+            if ($entity instanceof Hotel) {
+                $entity->setUpdatedBy($user);
+            }
         }
     }
 }

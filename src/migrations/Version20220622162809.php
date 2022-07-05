@@ -21,6 +21,7 @@ final class Version20220622162809 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE hotel ADD updated_by_id INT NOT NULL');
+        $this->addSql('ALTER TABLE hotel ADD created_by_id INT NOT NULL');
         $this->addSql('ALTER TABLE hotel ADD CONSTRAINT FK_3535ED9B03A8386 FOREIGN KEY (created_by_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE hotel ADD CONSTRAINT FK_3535ED9896DBBDE FOREIGN KEY (updated_by_id) REFERENCES user (id)');
         $this->addSql('CREATE INDEX IDX_3535ED9B03A8386 ON hotel (created_by_id)');
@@ -35,5 +36,6 @@ final class Version20220622162809 extends AbstractMigration
         $this->addSql('DROP INDEX IDX_3535ED9B03A8386 ON hotel');
         $this->addSql('DROP INDEX IDX_3535ED9896DBBDE ON hotel');
         $this->addSql('ALTER TABLE hotel DROP updated_by_id');
+        $this->addSql('ALTER TABLE hotel DROP created_by_id');
     }
 }

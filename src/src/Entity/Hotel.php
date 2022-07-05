@@ -41,11 +41,11 @@ class Hotel
     private $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $createdBy;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $updatedBy;
 
     #[ORM\Column(name: "deleted_at", type:"datetime_immutable", nullable: true)]
