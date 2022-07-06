@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class SearchHotelApplicationTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testAddAndSearchHotel(): void
     {
 
         $client = static::createClient();
