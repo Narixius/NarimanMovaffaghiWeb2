@@ -15,12 +15,12 @@ class SearchHotel
     }
 
     public static function likelyString(String $str): String {
-        return "%".$str."%";
+        return "%".strtolower($str)."%";
     }
 
     public function search(String $input): iterable
     {
         $hotelRepository = $this->manager->getRepository(Hotel::class);
-        return $hotelRepository->createQueryBuilder('hotel')->where('hotel.name like :query')->setParameter('query', $this->likelyString($input))->getQuery()->getResult();
+        return $hotelRepository->createQueryBuilder('hotel')->where('LOWER(hotel.name) like :query')->setParameter('query', $this->likelyString($input))->getQuery()->getResult();
     }
 }

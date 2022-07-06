@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
+        "easycorp/easyadmin-bundle": "^4.3",
         "gedmo/doctrine-extensions": "^3.7",
         "knplabs/knp-menu-bundle": "^3.2",
         "sensio/framework-extra-bundle": "^6.2",

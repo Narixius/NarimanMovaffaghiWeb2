@@ -13,6 +13,7 @@ RUN apt-get -y update && apt-get -y install git nodejs npm
 
 # install mysql driver
 RUN docker-php-ext-install pdo_mysql
+RUN apt-get install git unzip wait-for-it wget libicu-dev -y && docker-php-ext-install intl && docker-php-ext-enable intl
 
 # install xdebug
 # https://hub.docker.com/_/php

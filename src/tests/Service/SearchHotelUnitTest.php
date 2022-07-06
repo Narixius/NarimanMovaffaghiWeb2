@@ -30,6 +30,6 @@ class SearchHotelUnitTest extends TestCase
      */
     public function testSearchLikelyString($str)
     {
-        $this->assertEquals("%".$str."%", SearchHotel::likelyString($str));
+        $this->assertEquals("%".strtolower($str)."%", SearchHotel::likelyString($str));
     }
 }
