@@ -13,10 +13,10 @@
 
 {% block body %}
 <div class="card bg-transparent mx-auto border-0" style="max-width: 400px;" >
-    <h1>Create new Hotel</h1>
+    <h1>{{ 'Create new Hotel' | trans }}</h1>
     {{ include('hotel/_form.html.twig') }}
     <div>
-        <a class="btn btn-warning mt-2" href="{{ path('app_hotel_index') }}">Back to list</a>
+        <a class="btn btn-warning mt-2" href="{{ path('app_hotel_index') }}">{{ 'Back to list' | trans }}</a>
     </div>
 </div>
 {% endblock %}

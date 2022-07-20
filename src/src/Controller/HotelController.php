@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/hotel')]
+/**
+ * @Route("/{_locale}/hotel", defaults={"_locale": "en"}, requirements={"_locale": "en|fa"})
+ */
 class HotelController extends AbstractController
 {
     #[Route('/', name: 'app_hotel_index', methods: ['GET'])]
@@ -73,7 +75,6 @@ class HotelController extends AbstractController
     #[IsGranted('HOTEL_EDIT', subject: 'hotel')]
     public function edit(Request $request, Hotel $hotel, HotelRepository $hotelRepository): Response
     {
-        $this->denyAccessUnlessGranted('HOTEL_EDIT', $hotel);
 
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
