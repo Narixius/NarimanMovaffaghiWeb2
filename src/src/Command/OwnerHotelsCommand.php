@@ -51,6 +51,7 @@ class OwnerHotelsCommand extends Command
             ->leftJoin('hotel.createdBy', 'user')
             ->where('LOWER(user.roles) like :role')
             ->setParameter('role', '%HOTEL_OWNER%')
+            ->groupBy('user.id')
             ->getQuery()->getResult();
 
         $io->table(['User id', 'User Email', 'Hotels Name'], $hotels);
